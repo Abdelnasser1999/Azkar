@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/azkar"
+        android:title="@string/app_name"
+        app:showAsAction="always"
+        android:icon="@drawable/azkar"/>
+    <item
+        android:id="@+id/favorite"
+        android:title="@string/favorite"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_favorite_24_white"/>
+    <item
+        android:id="@+id/Myazkar"
+        android:title="@string/myazkar"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_myazkar"/>
+    <item
+        android:id="@+id/sound"
+        android:title="@string/sound"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_music_note_24"/>
+    <item
+        android:id="@+id/share"
+        android:title="@string/share"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_share_24"/>
+
+</menu>

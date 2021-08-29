@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="5dp"
+    app:cardUseCompatPadding="true"
+    android:layoutDirection="rtl">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/line1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:id="@+id/Title_Myazkar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fontFamily="@font/vipfont"
+                android:text="أعوذ بالله من الشيطان الرجيم"
+                android:textColor="#D66A22"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/Text_Myazkar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="center_horizontal"
+                android:fontFamily="@font/vipfont"
+                android:text="اللَّهُمَّ أَنْتَ رَبِّي لا إِلَهَ إِلا أَنْتَ ، عَلَيْكَ تَوَكَّلْتُ ، وَأَنْتَ رَبُّ الْعَرْشِ الْعَظِيمِ , مَا شَاءَ اللَّهُ كَانَ ، وَمَا لَمْ يَشَأْ لَمْ يَكُنْ ، وَلا حَوْلَ وَلا قُوَّةَ إِلا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ , أَعْلَمُ أَنَّ اللَّهَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ ، وَأَنَّ اللَّهَ قَدْ أَحَاطَ بِكُلِّ شَيْءٍ عِلْمًا , اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ شَرِّ نَفْسِي ، وَمِنْ شَرِّ كُلِّ دَابَّةٍ أَنْتَ آخِذٌ بِنَاصِيَتِهَا ، إِنَّ رَبِّي عَلَى صِرَاطٍ مُسْتَقِيمٍ."
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Discription_Myazkar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fontFamily="@font/vipfont"
+                android:text="[سورة الاخلاص.]"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/Endtext_Myazkar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:fontFamily="@font/vipfont"
+                android:text="من قالها حين يصبح وحين يمسي اجير من الجن حت يصبح"
+                android:textColor="#D60B22"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textClick_Myazkar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/line1"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/tvclick"
+            android:fontFamily="@font/comfort"
+            android:gravity="center"
+            android:paddingVertical="20dp"
+            android:text="100"
+            android:textColor="#FFFFFF"
+            android:textSize="32sp" />
+
+        <TextView
+            android:id="@+id/textcount_Myazkar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/textClick_Myazkar"
+            android:layout_alignTop="@id/textClick_Myazkar"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/comfort"
+            android:gravity="center"
+            android:text="100"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/ResetClick_Myazkar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/textClick_Myazkar"
+            android:layout_alignBottom="@id/textClick_Myazkar"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_sync_24" />
+
+        <ImageView
+            android:id="@+id/delete_Myazkar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/textClick_Myazkar"
+            android:layout_alignBottom="@id/textClick_Myazkar"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_delete_24" />
+
+        <ImageView
+            android:id="@+id/Update_Myazkar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@id/textClick_Myazkar"
+            android:layout_alignTop="@id/textClick_Myazkar"
+            android:padding="8dp"
+            android:src="@drawable/ic_baseline_edit_24" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
