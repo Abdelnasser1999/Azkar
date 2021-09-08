@@ -8,7 +8,10 @@ import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
+import android.widget.Toast;
+
 import com.example.azkar.Activity.SplashActivity;
 
 public class Notification_reciever extends BroadcastReceiver {
@@ -16,6 +19,8 @@ public class Notification_reciever extends BroadcastReceiver {
     private static final String CHANNEL_ID = "this.is.my.channelId";//you can add any id you want
     @Override
     public void onReceive(Context context, Intent intent) {
+
+//        Toast.makeText(context, "Alarm....", Toast.LENGTH_LONG).show();
         Intent notificationIntent = new Intent(context, SplashActivity.class);//on tap this activity will open
 
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
