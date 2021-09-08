@@ -18,6 +18,7 @@ import com.example.azkar.database.MyDataBase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -51,6 +52,14 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+//
+//        Intent intentre = new Intent(this, Notification_reciever.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+//                this.getApplicationContext(), 25, intentre, 0);
+//        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+//        alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis()
+//                + (15 * 1000), pendingIntent);
+//        Toast.makeText(this, "Alarm set in 15 seconds",Toast.LENGTH_LONG).show();
         PUSH_NOTIFICATION();
 
     }
@@ -61,13 +70,29 @@ public class SplashActivity extends AppCompatActivity {
         Intent notificationIntent = new Intent(this, Notification_reciever.class);//this intent will be called when taping the notification
         PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);//this pendingIntent will be called by the broadcast receiver
 
-        Calendar cal = Calendar.getInstance();//getting calender instance
+        Calendar cal = Calendar.getInstance();//getting calender instaCalendar
+        Calendar currentCal= Calendar.getInstance();
 
 //        cal.setTimeInMillis(System.currentTimeMillis());//setting the time from device
-        cal.set(Calendar.HOUR_OF_DAY, 02); // cal.set NOT cal.add
-        cal.set(Calendar.MINUTE,18);
-        cal.set(Calendar.SECOND, 02);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),AlarmManager.INTERVAL_DAY,broadcast);//alarm manager will repeat the notification each day at the set time
+        cal.set(Calendar.HOUR_OF_DAY, 17); // cal.set NOT cal.add
+        cal.set(Calendar.MINUTE,55);
+        cal.set(Calendar.SECOND, 0);
+
+        long intendedTime = cal.getTimeInMillis();
+        long currentTime = currentCal.getTimeInMillis();
+        if(intendedTime >= currentTime){
+            // you can add buffer time too here to ignore some small differences in milliseconds
+            // set from today
+            alarmManager.setRepeating(AlarmManager.RTC, intendedTime, AlarmManager.INTERVAL_DAY, broadcast);
+        } else{
+            // set from next day
+            // you might consider using calendar.add() for adding one day to the current day
+            cal.add(Calendar.DAY_OF_MONTH, 1);
+            intendedTime = cal.getTimeInMillis();
+
+            alarmManager.setRepeating(AlarmManager.RTC, intendedTime, AlarmManager.INTERVAL_DAY, broadcast);
+        }
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(),AlarmManager.INTERVAL_DAY,broadcast);//alarm manager will repeat the notification each day at the set time
     }
 
     public void Start_In_First_Time() {

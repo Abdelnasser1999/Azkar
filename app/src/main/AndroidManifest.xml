@@ -18,7 +18,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <receiver android:name=".Notification_reciever" />
 
-        <activity android:name=".Activity.SplashActivity">
+        <activity android:name=".Activity.SplashActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,5 +33,7 @@
             android:name=".Activity.AzkarActivity"
             android:parentActivityName=".Activity.MneuActivity" />
         <activity android:name=".Activity.MneuActivity" />
+        <receiver android:name=".Notification_reciever" >
+        </receiver>
     </application>
 </manifest>
