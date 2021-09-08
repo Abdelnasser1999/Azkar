@@ -64,7 +64,7 @@ public class Setting_Activity extends AppCompatActivity {
 
         calendar = Calendar.getInstance();
         currentTime = Calendar.getInstance().getTime();
-        sharedPreferences = getSharedPreferences("email", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         hour = calendar.get(Calendar.HOUR);
         minute = calendar.get(Calendar.MINUTE);

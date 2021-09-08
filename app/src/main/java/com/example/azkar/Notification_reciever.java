@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.azkar.Activity.SplashActivity;
 
 public class Notification_reciever extends BroadcastReceiver {
-
+    Notification notification;
     private static final String CHANNEL_ID = "this.is.my.channelId";//you can add any id you want
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -30,12 +30,21 @@ public class Notification_reciever extends BroadcastReceiver {
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);//getting the pendingIntent
 
         Notification.Builder builder = new Notification.Builder(context);//building the notification
-
-        Notification notification = builder.setContentTitle("Demo Notification")
-                .setContentText("New Notification ..")
-                .setTicker("New Message Alert!")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(pendingIntent).build();
+        String action = intent.getAction();
+        if (action.equals("morning")){
+             notification = builder.setContentTitle("Demo Notification")
+                    .setContentText("New Notification ..")
+                    .setTicker("New Message Alert!")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentIntent(pendingIntent).build();
+        }
+        else{
+            notification = builder.setContentTitle("Demo Notification night")
+                    .setContentText("New Notification night ..")
+                    .setTicker("New Message Alert! night")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setContentIntent(pendingIntent).build();
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(CHANNEL_ID);
