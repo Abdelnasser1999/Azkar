@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
-
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -47,5 +47,36 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Declare the dependency for the Cloud Firestore library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation "io.grpc:grpc-okhttp:1.32.2"
+
+    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:8.0.0'
+
+    // FirebaseUI for Cloud Firestore
+    implementation 'com.firebaseui:firebase-ui-firestore:8.0.0'
+
+    // FirebaseUI for Firebase Auth
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.0'
+
+    // FirebaseUI for Cloud Storage
+    implementation 'com.firebaseui:firebase-ui-storage:8.0.0'
+
+    //exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-hls:2.10.8'
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:2.10.8'
+
+
 
 }
