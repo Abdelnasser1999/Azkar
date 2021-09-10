@@ -27,13 +27,12 @@ public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     MyDataBase dataBase;
-    Calendar calendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash);
-        sharedPreferences = getSharedPreferences("email", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         dataBase = new MyDataBase(this);
         Start_In_First_Time();
@@ -72,6 +71,10 @@ public class SplashActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();//getting calender instaCalendar
         Calendar currentCal= Calendar.getInstance();
+
+        sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+        int morningTime = sharedPreferences.getInt("morningTime", 1);
+        int nightTime = sharedPreferences.getInt("nightTime", 1);
 
 //        cal.setTimeInMillis(System.currentTimeMillis());//setting the time from device
         cal.set(Calendar.HOUR_OF_DAY, 17); // cal.set NOT cal.add

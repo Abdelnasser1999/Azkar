@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -64,7 +65,7 @@ public class Setting_Activity extends AppCompatActivity {
 
         calendar = Calendar.getInstance();
         currentTime = Calendar.getInstance().getTime();
-        sharedPreferences = getSharedPreferences("email", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         editor = sharedPreferences.edit();
         hour = calendar.get(Calendar.HOUR);
         minute = calendar.get(Calendar.MINUTE);
@@ -177,6 +178,11 @@ public class Setting_Activity extends AppCompatActivity {
                 editor.apply();
             }
         });
+
+        Log.d("ddd", "notification: "+ischecked_notification);
+        Log.d("ddd", "_viberat: "+ischecked_viberat);
+        Log.d("ddd", "nightTime: "+nightTime);
+        Log.d("ddd", "morningTime: "+morningTime);
     }
     private void PlusMinusHoureAndMinuth(TextView textView, int minValue, int maxValue, String operation) {
 
