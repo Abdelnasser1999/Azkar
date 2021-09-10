@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.example.azkar.Moudle.AZKARMoudle;
@@ -27,6 +28,7 @@ public class SplashActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     MyDataBase dataBase;
+    Calendar calendar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,15 +73,25 @@ public class SplashActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();//getting calender instaCalendar
         Calendar currentCal= Calendar.getInstance();
-
-        sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
-        int morningTime = sharedPreferences.getInt("morningTime", 1);
-        int nightTime = sharedPreferences.getInt("nightTime", 1);
-
+        SharedPreferences sh = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+        // لازم تصل نتيجة المستخدم المحفوظة في الشيرد هنا
+        int morning = sh.getInt("morningTime", 5);
+        int night = (sh.getInt("nightTime", 5))+12;
 //        cal.setTimeInMillis(System.currentTimeMillis());//setting the time from device
-        cal.set(Calendar.HOUR_OF_DAY, 17); // cal.set NOT cal.add
-        cal.set(Calendar.MINUTE,55);
-        cal.set(Calendar.SECOND, 0);
+        if(morning>=1 && morning<=12) {
+            cal.set(Calendar.HOUR_OF_DAY, morning); // cal.set NOT cal.add
+            cal.set(Calendar.MINUTE, 6);
+            cal.set(Calendar.SECOND, 0);
+            Intent intent = new Intent()
+                    .setAction("morning");
+            sendBroadcast(intent);
+        }
+        else{
+            cal.set(Calendar.HOUR_OF_DAY, night);
+            Log.d("time10",night+"");// cal.set NOT cal.add
+            cal.set(Calendar.MINUTE, 6);
+            cal.set(Calendar.SECOND, 0);
+        }
 
         long intendedTime = cal.getTimeInMillis();
         long currentTime = currentCal.getTimeInMillis();
