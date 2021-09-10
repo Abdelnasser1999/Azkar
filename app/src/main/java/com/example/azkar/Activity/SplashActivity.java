@@ -73,10 +73,13 @@ public class SplashActivity extends AppCompatActivity {
 
         Calendar cal = Calendar.getInstance();//getting calender instaCalendar
         Calendar currentCal= Calendar.getInstance();
-        SharedPreferences sh = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         // لازم تصل نتيجة المستخدم المحفوظة في الشيرد هنا
-        int morning = sh.getInt("morningTime", 5);
-        int night = (sh.getInt("nightTime", 5))+12;
+        int morning = sharedPreferences.getInt("morningTime", 5);
+        int night = (sharedPreferences.getInt("nightTime", 5))+12;
+        Log.d("ddd", "nightTime: "+morning);
+        Log.d("ddd", "morningTime: "+night);
+
 //        cal.setTimeInMillis(System.currentTimeMillis());//setting the time from device
         if(morning>=1 && morning<=12) {
             cal.set(Calendar.HOUR_OF_DAY, morning); // cal.set NOT cal.add
