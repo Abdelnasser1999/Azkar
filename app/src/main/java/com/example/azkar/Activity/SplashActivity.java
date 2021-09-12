@@ -6,7 +6,9 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.util.Log;
 import android.view.WindowManager;
 
@@ -29,6 +31,8 @@ public class SplashActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     MyDataBase dataBase;
     Calendar calendar;
+    Notification_reciever notification_reciever;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +51,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 1500);
+        //*
 
     }
 
@@ -78,22 +83,26 @@ public class SplashActivity extends AppCompatActivity {
         int night = (sharedPreferences.getInt("nightTime", 5))+12;
         Log.d("ddd", "nightTime: "+morning);
         Log.d("ddd", "morningTime: "+night);
-
-//        cal.setTimeInMillis(System.currentTimeMillis());//setting the time from device
-        if(morning>=1 && morning<=12) {
-            cal.set(Calendar.HOUR_OF_DAY, morning); // cal.set NOT cal.add
-            cal.set(Calendar.MINUTE, 6);
+        // انتبه للقيم و انت بتغير حتلاقي الصبح - هو وقت 13 وفوق هذا مفروض المساء
+        // بس مش مشكلتنا سيبو مشكلتنا هلقيت ليش لما ابعث الانتنت بوصل الرسيف نل
+        cal.setTimeInMillis(System.currentTimeMillis());//setting the time from device
+        if(morning>=13 && morning<=24) {
+            cal.set(Calendar.HOUR_OF_DAY,morning); // cal.set NOT cal.add
+            cal.set(Calendar.MINUTE,59);
             cal.set(Calendar.SECOND, 0);
-            Intent intent = new Intent()
-                    .setAction("morning");
+            Intent intent = new Intent("my.action.morning");
             sendBroadcast(intent);
+//            Intent intent = new Intent()
+//                    .setAction("morning");
+//            sendBroadcast(intent);
         }
-        else{
-            cal.set(Calendar.HOUR_OF_DAY, night);
-            Log.d("time10",night+"");// cal.set NOT cal.add
-            cal.set(Calendar.MINUTE, 6);
-            cal.set(Calendar.SECOND, 0);
-        }
+//        else{
+//            cal.set(Calendar.HOUR_OF_DAY, night);
+//            Log.d("time10",night+"");// cal.set NOT cal.add
+//            cal.set(Calendar.MINUTE, 6);
+//            cal.set(Calendar.SECOND, 0);
+//        }
+
 
         long intendedTime = cal.getTimeInMillis();
         long currentTime = currentCal.getTimeInMillis();
