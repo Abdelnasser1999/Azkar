@@ -33,9 +33,10 @@
             android:parentActivityName=".Activity.MneuActivity" />
         <activity android:name=".Activity.MneuActivity" />
         <receiver android:name=".Notification_reciever"
+            android:enabled="true"
             android:exported="true">
             <intent-filter>
-            <action android:name="morning"/>
+            <action android:name="my.action.morning"/>
              </intent-filter>
     </receiver>
     </application>
