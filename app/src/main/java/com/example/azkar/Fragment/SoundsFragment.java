@@ -21,11 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SoundsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class SoundsFragment extends Fragment {
 
     private static final String ARG_PARAM1 = "param1";

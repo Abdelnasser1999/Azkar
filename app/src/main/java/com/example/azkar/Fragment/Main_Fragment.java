@@ -64,7 +64,7 @@ public class Main_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_azkar_, container, false);
         setHasOptionsMenu(true);
-        recycle = (RecyclerView) v.findViewById(R.id.recycle);
+        recycle = v.findViewById(R.id.recycle);
         dataBase = new MyDataBase(v.getContext());
         list = dataBase.GET_ALL_ITEMS();
         adapterClass = new AdapterClass(list, new OnRecycleViewItemClickListner() {
@@ -94,7 +94,7 @@ public class Main_Fragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 ArrayList<Item> listQuery = dataBase.SEARCH_ITEM(newText);
-                adapterClass.setCars(listQuery);
+                adapterClass.setItems(listQuery);
                 adapterClass.notifyDataSetChanged();
                 return false;
             }

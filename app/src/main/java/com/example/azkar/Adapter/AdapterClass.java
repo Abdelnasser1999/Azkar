@@ -1,9 +1,5 @@
 package com.example.azkar.Adapter;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,23 +21,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderClass> {
-    ArrayList<Item> cars;
+    ArrayList<Item> items;
     OnRecycleViewItemClickListner listner;
     View view;
     MyDataBase dataBase;
 
-    public AdapterClass(ArrayList<Item> cars,  OnRecycleViewItemClickListner listner)
+    public AdapterClass(ArrayList<Item> items, OnRecycleViewItemClickListner listner)
     {
-        this.cars = cars;
+        this.items = items;
         this.listner = listner;
     }
 
-    public List<Item> getCars() {
-        return cars;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setCars(ArrayList<Item> cars) {
-        this.cars = cars;
+    public void setItems(ArrayList<Item> items) {
+        this.items = items;
     }
 
     @NonNull
@@ -61,7 +57,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderCl
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
-        Item item = cars.get(position);
+        Item item = items.get(position);
         holder.Text.setText(item.text);
         holder.check.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -96,7 +92,7 @@ public class AdapterClass extends RecyclerView.Adapter<AdapterClass.ViewHolderCl
 
     @Override
     public int getItemCount() {
-        return cars.size();
+        return items.size();
     }
 
     public class ViewHolderClass extends RecyclerView.ViewHolder {

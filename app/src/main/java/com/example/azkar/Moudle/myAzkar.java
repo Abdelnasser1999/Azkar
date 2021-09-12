@@ -2,7 +2,7 @@ package com.example.azkar.Moudle;
 
 import java.io.Serializable;
 
-public class MyAZKARMO implements Serializable {
+public class myAzkar implements Serializable {
     public int id;
     public String title;
     public String text;
@@ -11,7 +11,7 @@ public class MyAZKARMO implements Serializable {
     public int count;
     public int countminus;
 
-    public MyAZKARMO(int id, String title, String text, String description, String endText, int countminus, int count) {
+    public myAzkar(int id, String title, String text, String description, String endText, int countminus, int count) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -21,7 +21,7 @@ public class MyAZKARMO implements Serializable {
         this.countminus = countminus;
     }
 
-    public MyAZKARMO(String title, String text, String description, String endText, int countminus, int count) {
+    public myAzkar(String title, String text, String description, String endText, int countminus, int count) {
         this.title = title;
         this.text = text;
         this.description = description;

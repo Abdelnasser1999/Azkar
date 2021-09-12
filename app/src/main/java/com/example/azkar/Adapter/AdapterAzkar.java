@@ -1,9 +1,7 @@
 package com.example.azkar.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.Vibrator;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.azkar.Fragment.MyAzkarFragment;
-import com.example.azkar.Moudle.AZKARMoudle;
+import com.example.azkar.Moudle.azkar;
 import com.example.azkar.R;
 import com.example.azkar.Utils.OnRecycleViewItemClickListnerForAzkar;
 import com.example.azkar.database.MyDataBase;
@@ -28,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterAzkar extends RecyclerView.Adapter<AdapterAzkar.ViewHolderClass> {
-    ArrayList<AZKARMoudle> azkarArrayList;
+    ArrayList<azkar> azkarArrayList;
     OnRecycleViewItemClickListnerForAzkar listner;
     MyDataBase dataBase;
     Context context;
@@ -39,19 +36,16 @@ public class AdapterAzkar extends RecyclerView.Adapter<AdapterAzkar.ViewHolderCl
     SharedPreferences.Editor editor;
 
 
-    public AdapterAzkar(Context context, ArrayList<AZKARMoudle> azkarArrayList, RecyclerView recyclerView) {
+    public AdapterAzkar(Context context, ArrayList<azkar> azkarArrayList, RecyclerView recyclerView) {
         this.context = context;
         this.azkarArrayList = azkarArrayList;
         this.recyclerView = recyclerView;
     }
 
 
-    public List<AZKARMoudle> getCars() {
-        return azkarArrayList;
-    }
 
-    public void setCars(ArrayList<AZKARMoudle> cars) {
-        this.azkarArrayList = cars;
+    public void setList(ArrayList<azkar> list) {
+        this.azkarArrayList = list;
     }
 
     @NonNull
@@ -60,7 +54,7 @@ public class AdapterAzkar extends RecyclerView.Adapter<AdapterAzkar.ViewHolderCl
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_zeker_layout, null, false);
         dataBase = new MyDataBase(v.getContext());
         ViewHolderClass holderClass = new ViewHolderClass(v);
-        sharedPreferences = v.getContext().getSharedPreferences("email", v.getContext().MODE_PRIVATE);
+        sharedPreferences = v.getContext().getSharedPreferences("PREFERENCE", v.getContext().MODE_PRIVATE);
         vibrator = (Vibrator) v.getContext().getSystemService(v.getContext().VIBRATOR_SERVICE);
         editor = sharedPreferences.edit();
         return holderClass;
@@ -77,7 +71,7 @@ public class AdapterAzkar extends RecyclerView.Adapter<AdapterAzkar.ViewHolderCl
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, final int position) {
         int textSizeOnFile = sharedPreferences.getInt("seekSize", 20);
-        AZKARMoudle item = azkarArrayList.get(position);
+        azkar item = azkarArrayList.get(position);
         holder.Title.setText(item.title);
         holder.Text.setText(item.text);
         holder.Description.setText(item.description);
@@ -93,7 +87,6 @@ public class AdapterAzkar extends RecyclerView.Adapter<AdapterAzkar.ViewHolderCl
 
             @Override
             public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
-                Toast.makeText(context, "sadf", Toast.LENGTH_SHORT).show();
             }
         };
         holder.Text.setTextSize(textSizeOnFile);

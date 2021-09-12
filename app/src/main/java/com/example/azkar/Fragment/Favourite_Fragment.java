@@ -82,7 +82,7 @@ public class Favourite_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favourite_, container, false);
         MyDataBase dataBase = new MyDataBase(view.getContext());
-        recycle = (RecyclerView) view.findViewById(R.id.recycle);
+        recycle =  view.findViewById(R.id.recycle);
         list = dataBase.GET_ALL_FAVORITE();
         adapterClass = new AdapterClass(list, new OnRecycleViewItemClickListner() {
             @Override

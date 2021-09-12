@@ -2,13 +2,13 @@ package com.example.azkar.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -26,13 +26,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Calendar;
 
 
-public class MneuActivity extends AppCompatActivity {
-    private androidx.appcompat.widget.Toolbar toolbar;
+public class MainActivity extends AppCompatActivity {
+    Toolbar toolbar;
     MyDataBase dataBase;
-    public DrawerLayout drawaer;
+    DrawerLayout drawaer;
     ActionBarDrawerToggle toggle;
-    private NavigationView navigation;
-    private FrameLayout framlayout;
+    NavigationView navigation;
+    FrameLayout framlayout;
     Calendar calendar;
 
     @Override
@@ -41,12 +41,12 @@ public class MneuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         calendar = Calendar.getInstance();
-        toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
-        navigation = (NavigationView) findViewById(R.id.navigation);
+        toolbar =  findViewById(R.id.toolbar);
+        navigation = findViewById(R.id.navigation);
         setSupportActionBar(toolbar);
-        drawaer = (DrawerLayout) findViewById(R.id.drawaer);
+        drawaer =  findViewById(R.id.drawaer);
         dataBase = new MyDataBase(this);
-        framlayout = (FrameLayout) findViewById(R.id.framlayout);
+        framlayout = findViewById(R.id.framlayout);
 
         toggle = new ActionBarDrawerToggle(this, drawaer, R.string.open, R.string.close);
         drawaer.addDrawerListener(toggle);
@@ -101,7 +101,7 @@ public class MneuActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.setting:
-                Intent intent = new Intent(MneuActivity.this, Setting_Activity.class);
+                Intent intent = new Intent(MainActivity.this, Setting_Activity.class);
                 startActivity(intent);
                 break;
             case android.R.id.home:

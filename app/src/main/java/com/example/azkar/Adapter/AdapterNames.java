@@ -4,40 +4,33 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.azkar.Activity.AzkarActivity;
-import com.example.azkar.Moudle.AZKARMoudle;
-import com.example.azkar.Moudle.Item;
+import com.example.azkar.Moudle.azkar;
 import com.example.azkar.R;
-import com.example.azkar.Utils.OnRecycleViewItemClickListner;
 import com.example.azkar.database.MyDataBase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterNames extends RecyclerView.Adapter<AdapterNames.ViewHolderClass> {
-    ArrayList<AZKARMoudle> Names;
+    ArrayList<azkar> Names;
     View view;
     MyDataBase dataBase;
     Context context;
-    public AdapterNames(Context context,ArrayList<AZKARMoudle> Names) {
+    public AdapterNames(Context context,ArrayList<azkar> Names) {
         this.context = context;
         this.Names = Names;
     }
 
-    public List<AZKARMoudle> getNames() {
+    public List<azkar> getNames() {
         return Names;
     }
 
-    public void setNames(ArrayList<AZKARMoudle> Names) {
+    public void setNames(ArrayList<azkar> Names) {
         this.Names = Names;
     }
 
@@ -53,7 +46,7 @@ public class AdapterNames extends RecyclerView.Adapter<AdapterNames.ViewHolderCl
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, int position) {
-        AZKARMoudle item = Names.get(position);
+        azkar item = Names.get(position);
         holder.Text.setText(item.text);
     }
 

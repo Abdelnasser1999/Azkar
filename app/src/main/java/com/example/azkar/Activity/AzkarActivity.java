@@ -3,31 +3,28 @@ package com.example.azkar.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.view.View;
-import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.azkar.Adapter.AdapterAzkar;
 import com.example.azkar.Adapter.AdapterNames;
-import com.example.azkar.Moudle.AZKARMoudle;
+import com.example.azkar.Moudle.azkar;
 import com.example.azkar.Moudle.Item;
 import com.example.azkar.R;
-import com.example.azkar.Utils.OnRecycleViewItemClickListnerForAzkar;
 import com.example.azkar.database.MyDataBase;
 
 import java.util.ArrayList;
 
 public class AzkarActivity extends AppCompatActivity {
 
-    private RecyclerView recycle;
+    RecyclerView recycle;
     MyDataBase dataBase;
-    private androidx.appcompat.widget.Toolbar toolbar;
-    ArrayList<AZKARMoudle> azkaArrayList;
+    Toolbar toolbar;
+    ArrayList<azkar> azkaArrayList;
     AdapterAzkar adapter;
     Vibrator vibrator;
     SharedPreferences sharedPreferences;
@@ -38,10 +35,10 @@ public class AzkarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_azkar);
 
-        recycle = (RecyclerView) findViewById(R.id.recycle);
-        toolbar = (androidx.appcompat.widget.Toolbar) findViewById(R.id.toolbar);
+        recycle = findViewById(R.id.recycle);
+        toolbar = findViewById(R.id.toolbar);
         dataBase = new MyDataBase(this);
-        sharedPreferences = getSharedPreferences("email", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("PREFERENCE", MODE_PRIVATE);
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
         editor = sharedPreferences.edit();
         Item item = (Item) getIntent().getSerializableExtra("item");

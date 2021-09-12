@@ -1,10 +1,7 @@
 package com.example.azkar.Utils;
 
-import android.view.View;
-import android.widget.TextView;
-
-import com.example.azkar.Moudle.AZKARMoudle;
+import com.example.azkar.Moudle.azkar;
 
 public interface OnRecycleViewItemClickListnerForAzkar {
-    void onItemClick(AZKARMoudle azkarMoudle);
+    void onItemClick(azkar azkar);
 }

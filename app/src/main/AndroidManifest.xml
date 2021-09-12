@@ -27,11 +27,11 @@
         </activity>
         <activity
             android:name=".Activity.Setting_Activity"
-            android:parentActivityName=".Activity.MneuActivity" />
+            android:parentActivityName=".Activity.MainActivity" />
         <activity
             android:name=".Activity.AzkarActivity"
-            android:parentActivityName=".Activity.MneuActivity" />
-        <activity android:name=".Activity.MneuActivity" />
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity android:name=".Activity.MainActivity" />
         <receiver android:name=".Notification_reciever"
             android:enabled="true"
             android:exported="true">

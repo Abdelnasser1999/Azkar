@@ -17,7 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.azkar.Moudle.MyAZKARMO;
+import com.example.azkar.Moudle.myAzkar;
 import com.example.azkar.R;
 import com.example.azkar.Utils.OnRecycleViewItemClickListner_For_MyAzkar;
 import com.example.azkar.database.MyDataBase;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHolderClass> {
-    ArrayList<MyAZKARMO> azkarArrayList;
+    ArrayList<myAzkar> azkarArrayList;
     MyDataBase dataBase;
     int isFinish = -1;
     Vibrator vibrator;
@@ -35,17 +35,17 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
     SharedPreferences.Editor editor;
     Context activity;
 
-    public Adapter_MyAzkar(ArrayList<MyAZKARMO> azkarArrayList, Context activity) {
+    public Adapter_MyAzkar(ArrayList<myAzkar> azkarArrayList, Context activity) {
         this.azkarArrayList = azkarArrayList;
         this.activity = activity;
     }
 
-    public List<MyAZKARMO> getCars() {
+    public List<myAzkar> getCars() {
         return azkarArrayList;
     }
 
-    public void setCars(ArrayList<MyAZKARMO> cars) {
-        this.azkarArrayList = cars;
+    public void setList(ArrayList<myAzkar> list) {
+        this.azkarArrayList = list;
     }
 
     @NonNull
@@ -54,7 +54,7 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_my_azkar, null, false);
         dataBase = new MyDataBase(v.getContext());
         ViewHolderClass holderClass = new ViewHolderClass(v);
-        sharedPreferences = v.getContext().getSharedPreferences("email", v.getContext().MODE_PRIVATE);
+        sharedPreferences = v.getContext().getSharedPreferences("PREFERENCE", v.getContext().MODE_PRIVATE);
         vibrator = (Vibrator) v.getContext().getSystemService(v.getContext().VIBRATOR_SERVICE);
         editor = sharedPreferences.edit();
         return holderClass;
@@ -63,7 +63,7 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass holder, final int position) {
         int textSizeOnFile = sharedPreferences.getInt("seekSize", 20);
-        MyAZKARMO item = azkarArrayList.get(position);
+        myAzkar item = azkarArrayList.get(position);
         holder.Title.setText(item.title);
         holder.Text.setText(item.text);
         holder.Description.setText(item.description);
@@ -127,12 +127,12 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
     }
 
     public void UpdateItem(final int position) {
-        MyAZKARMO itemm = azkarArrayList.get(position);
+        myAzkar itemm = azkarArrayList.get(position);
         ShowDialogUpdate(activity, itemm);
     }
 
     public void removeItem(final int position) {
-        MyAZKARMO itemm = azkarArrayList.get(position);
+        myAzkar itemm = azkarArrayList.get(position);
         Dialog_Accept(activity, itemm);
     }
 
@@ -172,7 +172,7 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
         }
     }
 
-    public void ShowDialogUpdate(Context context, MyAZKARMO azkarmo) {
+    public void ShowDialogUpdate(Context context, myAzkar azkarmo) {
         dataBase = new MyDataBase(context);
         Dialog dialog = new Dialog(context);
         dialog.setContentView(R.layout.dialog_layout);
@@ -200,10 +200,10 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
                     count.setError("0 على الأقل");
                 } else {
                     int id = azkarmo.id;
-                    MyAZKARMO myAZKARMO = new MyAZKARMO(id, title.getText().toString(), text.getText().toString(), description.getText().toString(), endtext.getText().toString(), Integer.parseInt(count.getText().toString()), Integer.parseInt(count.getText().toString()));
-                    dataBase.UPDATE_My_Azkar_Object(myAZKARMO);
-                    ArrayList<MyAZKARMO> newList = dataBase.GET_All_My_Azkar();
-                    setCars(newList);
+                    myAzkar myAzkar = new myAzkar(id, title.getText().toString(), text.getText().toString(), description.getText().toString(), endtext.getText().toString(), Integer.parseInt(count.getText().toString()), Integer.parseInt(count.getText().toString()));
+                    dataBase.UPDATE_My_Azkar_Object(myAzkar);
+                    ArrayList<myAzkar> newList = dataBase.GET_All_My_Azkar();
+                    setList(newList);
                     notifyDataSetChanged();
                     dialog.dismiss();
                 }
@@ -213,15 +213,15 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                ArrayList<MyAZKARMO> newList = dataBase.GET_All_My_Azkar();
-                setCars(newList);
+                ArrayList<myAzkar> newList = dataBase.GET_All_My_Azkar();
+                setList(newList);
                 notifyDataSetChanged();
             }
         });
         dialog.show();
     }
 
-    public void Dialog_Accept(Context context, MyAZKARMO item) {
+    public void Dialog_Accept(Context context, myAzkar item) {
         AlertDialog.Builder bu = new AlertDialog.Builder(context);
         bu.setTitle("تأكيد الحذف")
                 .setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
@@ -229,16 +229,16 @@ public class Adapter_MyAzkar extends RecyclerView.Adapter<Adapter_MyAzkar.ViewHo
                     public void onClick(DialogInterface dialog, int which) {
                         int id = item.id;
                         dataBase.DELETE_My_Azkar_Object(id);
-                        ArrayList<MyAZKARMO> newList = dataBase.GET_All_My_Azkar();
-                        setCars(newList);
+                        ArrayList<myAzkar> newList = dataBase.GET_All_My_Azkar();
+                        setList(newList);
                         notifyDataSetChanged();
                     }
                 }).setNegativeButton("الغاء", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                ArrayList<MyAZKARMO> newList = dataBase.GET_All_My_Azkar();
-                setCars(newList);
+                ArrayList<myAzkar> newList = dataBase.GET_All_My_Azkar();
+                setList(newList);
                 notifyDataSetChanged();
             }
         });

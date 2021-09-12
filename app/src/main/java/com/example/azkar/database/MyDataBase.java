@@ -8,9 +8,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import com.example.azkar.Moudle.AZKARMoudle;
+import com.example.azkar.Moudle.azkar;
 import com.example.azkar.Moudle.Item;
-import com.example.azkar.Moudle.MyAZKARMO;
+import com.example.azkar.Moudle.myAzkar;
 
 import java.util.ArrayList;
 
@@ -66,7 +66,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    public boolean INSERT_Zeker(AZKARMoudle car) {
+    public boolean INSERT_Zeker(azkar car) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TABLE_TITLE, car.title);
@@ -86,7 +86,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(strSQL);
     }
 
-    public boolean UPDATE_CAR(AZKARMoudle car) {
+    public boolean UPDATE_CAR(azkar car) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TABLE_TITLE, car.title);
@@ -108,8 +108,8 @@ public class MyDataBase extends SQLiteOpenHelper {
         return res != -1;
     }
 
-    public ArrayList<AZKARMoudle> GET_ALL_AZKAR() {
-        ArrayList<AZKARMoudle> cars = new ArrayList<>();
+    public ArrayList<azkar> GET_ALL_AZKAR() {
+        ArrayList<azkar> cars = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + "", null);
         if (cursor.moveToFirst()) {
@@ -122,7 +122,7 @@ public class MyDataBase extends SQLiteOpenHelper {
                 int Count = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT));
                 int CountMinus = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT_MINUS));
                 int From = cursor.getInt(cursor.getColumnIndex(TABLE_FROM));
-                AZKARMoudle car = new AZKARMoudle(id, Title, Text, Description, EndText, CountMinus, Count, From);
+                azkar car = new azkar(id, Title, Text, Description, EndText, CountMinus, Count, From);
                 cars.add(car);
             } while (cursor.moveToNext());
             cursor.close();
@@ -130,8 +130,8 @@ public class MyDataBase extends SQLiteOpenHelper {
         return cars;
     }
 
-    public ArrayList<AZKARMoudle> GETAllFromWhere(int from) {
-        ArrayList<AZKARMoudle> cars = new ArrayList<>();
+    public ArrayList<azkar> GETAllFromWhere(int from) {
+        ArrayList<azkar> cars = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String args[] = {from + ""};
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + TABLE_FROM + " = " + from + " ", null);
@@ -145,7 +145,7 @@ public class MyDataBase extends SQLiteOpenHelper {
                 int Count = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT));
                 int CountMinus = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT_MINUS));
                 int From = cursor.getInt(cursor.getColumnIndex(TABLE_FROM));
-                AZKARMoudle car = new AZKARMoudle(id, Title, Text, Description, EndText, CountMinus, Count, From);
+                azkar car = new azkar(id, Title, Text, Description, EndText, CountMinus, Count, From);
                 cars.add(car);
             } while (cursor.moveToNext());
             cursor.close();
@@ -153,7 +153,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         return cars;
     }
 
-    public AZKARMoudle GET_ZEKER(int carr) {
+    public azkar GET_ZEKER(int carr) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String args[] = {carr + ""};
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + TABLE_ID + "=?", args);
@@ -166,15 +166,15 @@ public class MyDataBase extends SQLiteOpenHelper {
             int Count = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT));
             int CountMinus = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT_MINUS));
             int From = cursor.getInt(cursor.getColumnIndex(TABLE_FROM));
-            AZKARMoudle car = new AZKARMoudle(id, Title, Text, Description, EndText, CountMinus, Count, From);
+            azkar car = new azkar(id, Title, Text, Description, EndText, CountMinus, Count, From);
             cursor.close();
             return car;
         }
         return null;
     }
 
-    public ArrayList<AZKARMoudle> SEARCH_ZEKER(String text) {
-        ArrayList<AZKARMoudle> cars = new ArrayList<>();
+    public ArrayList<azkar> SEARCH_ZEKER(String text) {
+        ArrayList<azkar> cars = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String args[] = {text + "%"};
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + TABLE_TITLE + " LIKE ?", args);
@@ -188,7 +188,7 @@ public class MyDataBase extends SQLiteOpenHelper {
                 int Count = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT));
                 int CountMinus = cursor.getInt(cursor.getColumnIndex(TABLE_COUNT_MINUS));
                 int From = cursor.getInt(cursor.getColumnIndex(TABLE_FROM));
-                AZKARMoudle car = new AZKARMoudle(id, Title, Text, Description, EndText, CountMinus, Count, From);
+                azkar car = new azkar(id, Title, Text, Description, EndText, CountMinus, Count, From);
                 cars.add(car);
             } while (cursor.moveToNext());
             cursor.close();
@@ -289,7 +289,7 @@ public class MyDataBase extends SQLiteOpenHelper {
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    public boolean INSERT_My_Azkar(MyAZKARMO car) {
+    public boolean INSERT_My_Azkar(myAzkar car) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(MyAzkar_TITLE, car.title);
@@ -308,7 +308,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(strSQL);
     }
 
-    public boolean UPDATE_My_Azkar_Object(MyAZKARMO car) {
+    public boolean UPDATE_My_Azkar_Object(myAzkar car) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(MyAzkar_TITLE, car.title);
@@ -329,8 +329,8 @@ public class MyDataBase extends SQLiteOpenHelper {
         return res != -1;
     }
 
-    public ArrayList<MyAZKARMO> GET_All_My_Azkar() {
-        ArrayList<MyAZKARMO> cars = new ArrayList<>();
+    public ArrayList<myAzkar> GET_All_My_Azkar() {
+        ArrayList<myAzkar> cars = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME_3 + "", null);
         if (cursor.moveToFirst()) {
@@ -342,7 +342,7 @@ public class MyDataBase extends SQLiteOpenHelper {
                 String EndText = cursor.getString(cursor.getColumnIndex(MyAzkar_ENDTEXT));
                 int Count = cursor.getInt(cursor.getColumnIndex(MyAzkar_COUNT));
                 int CountMinus = cursor.getInt(cursor.getColumnIndex(MyAzkar_COUNT_MINUS));
-                MyAZKARMO car = new MyAZKARMO(id, Title, Text, Description, EndText, CountMinus, Count);
+                myAzkar car = new myAzkar(id, Title, Text, Description, EndText, CountMinus, Count);
                 cars.add(car);
             } while (cursor.moveToNext());
             cursor.close();
@@ -350,7 +350,7 @@ public class MyDataBase extends SQLiteOpenHelper {
         return cars;
     }
 
-    public MyAZKARMO GET_MyAzkar_One_Object(int carr) {
+    public myAzkar GET_MyAzkar_One_Object(int carr) {
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String args[] = {carr + ""};
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME_3 + " WHERE " + MyAzkar_ID + "=?", args);
@@ -362,15 +362,15 @@ public class MyDataBase extends SQLiteOpenHelper {
             String EndText = cursor.getString(cursor.getColumnIndex(MyAzkar_ENDTEXT));
             int Count = cursor.getInt(cursor.getColumnIndex(MyAzkar_COUNT));
             int CountMinus = cursor.getInt(cursor.getColumnIndex(MyAzkar_COUNT_MINUS));
-            MyAZKARMO car = new MyAZKARMO(id, Title, Text, Description, EndText, CountMinus, Count);
+            myAzkar car = new myAzkar(id, Title, Text, Description, EndText, CountMinus, Count);
             cursor.close();
             return car;
         }
         return null;
     }
 
-    public ArrayList<MyAZKARMO> SEARCH_On_My_Azkar(String text) {
-        ArrayList<MyAZKARMO> cars = new ArrayList<>();
+    public ArrayList<myAzkar> SEARCH_On_My_Azkar(String text) {
+        ArrayList<myAzkar> cars = new ArrayList<>();
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
         String args[] = {text + "%"};
         Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME_3 + " WHERE " + MyAzkar_TITLE + " LIKE ?", args);
@@ -383,7 +383,7 @@ public class MyDataBase extends SQLiteOpenHelper {
                 String EndText = cursor.getString(cursor.getColumnIndex(MyAzkar_ENDTEXT));
                 int Count = cursor.getInt(cursor.getColumnIndex(MyAzkar_COUNT));
                 int CountMinus = cursor.getInt(cursor.getColumnIndex(MyAzkar_COUNT_MINUS));
-                MyAZKARMO car = new MyAZKARMO(id, Title, Text, Description, EndText, CountMinus, Count);
+                myAzkar car = new myAzkar(id, Title, Text, Description, EndText, CountMinus, Count);
                 cars.add(car);
             } while (cursor.moveToNext());
             cursor.close();
